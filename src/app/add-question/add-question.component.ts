@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RestService } from '../services/rest.service';
 
 @Component({
   selector: 'app-add-question',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddQuestionComponent implements OnInit {
 
-  constructor() { }
+  que : any = {};
+  
+  constructor(private rest: RestService) { }
 
   ngOnInit() {
+    // this.rest.addQuestion().subscribe(resp => {
+    //   console.log(resp); 
+    // }); 
   }
 
 }

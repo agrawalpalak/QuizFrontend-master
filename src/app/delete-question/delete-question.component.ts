@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RestService } from '../services/rest.service';
 
 @Component({
   selector: 'app-delete-question',
@@ -7,16 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteQuestionComponent implements OnInit {
 
-  QueAns = [{
-    "que" : "qwert1"
-  },
-{
-  "que":"qwerty2"
-}]
+//   QueAns = [{
+//     "que" : "qwert1"
+//   },
+// {
+//   "que":"qwerty2"
+// }]
+que: any = {};
 
-  constructor() { }
+  constructor(private rest: RestService) { }
 
   ngOnInit() {
+    this.rest.getAllQuestions().subscribe(resp => {
+      console.log(resp);
+      this.que = resp;
+    });
   }
 
 }

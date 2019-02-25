@@ -4,13 +4,11 @@
     <tr>
       <th>Questions</th>
       <th>Delete</th>
-      
     </tr>
-    <tr *ngFor = "let a of QueAns">
-      <td>{{a.que}}</td>
-      <td><button class="deletebtn">Delete</button> &nbsp; &nbsp;
+    <tr *ngFor = "let a of que">
+      <td>{{a.question}}</td>
+      <td><button class="deletebtn" onClick=delete(a.id)>Delete</button> &nbsp; &nbsp;
          <button class="editbtn" routerLink="/AddQuestionComponent">Edit</button> </td>
-     
     </tr>
     
   </table>

@@ -15,11 +15,22 @@ export class RestService {
     })
   };
   constructor(private http: HttpClient) { }
-  getConfig(): Observable<any> {
-    // now returns an Observable of Config
-    console.log("auth called");
+  getAllQuestions(): Observable<any> {
     return this.http.get<any>(BASE_URL + "getAllQuestions", this.httpOptions).pipe(map(this.extractData));
   }
+
+  addQuestion(): Observable<any> {
+    // now returns an Observable of Config
+    console.log("auth called");
+    return this.http.post<any>(BASE_URL + "addQuestion", this.httpOptions).pipe(map(this.extractData));
+  }
+
+  deleteQuestionById(id): Observable<any> {
+    // now returns an Observable of Config
+    console.log("auth called");
+    return this.http.delete(BASE_URL + "deleteQuestionById");
+  }
+
   private extractData(res: Response) {
     let body = res;
     return body || { };

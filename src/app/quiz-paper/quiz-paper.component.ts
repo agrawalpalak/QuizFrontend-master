@@ -4,7 +4,7 @@ import 'rxjs/add/observable/timer'
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/take'
 import { Pipe, PipeTransform } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { RestService } from '../services/rest.service';
 
 @Component({
   selector: 'app-quiz-paper',
@@ -14,24 +14,9 @@ import { AuthService } from '../services/auth.service';
 
 export class QuizPaperComponent implements OnInit {
 
-  QueAns = [{
-    "que": "qweerty",
-    "ans": {
-      "option1" : "a",
-      "option2" : "b",
-      "option3" : "c",
-      "option4" : "d"
-    }
-    },{
-      "que": "qweerty2",
-      "ans": {
-        "option1" : "a2",
-        "option2" : "b2",
-        "option3" : "c2",
-        "option4" : "d2"
-      }
-    }]
-  constructor(private auth: AuthService) { }
+  que: any = {};
+
+  constructor(private rest: RestService) { }
 
   countDown;
   counter = 600;
@@ -39,8 +24,9 @@ export class QuizPaperComponent implements OnInit {
   ngOnInit() {
     this.countDown = Observable.timer(0, this.tick).take(this.counter).map(() => --this.counter);
 
-    this.auth.getConfig().subscribe(resp => {
+    this.rest.getAllQuestions().subscribe(resp => {
       console.log(resp);
+      this.que = resp;
     }); 
   }
 }

@@ -20,17 +20,11 @@ export class AuthService {
   getConfig(): Observable<any> {
     // now returns an Observable of Config
     console.log("auth called");
-    return this.http.get<any>(BASE_URL + "getAllQuestions", this.httpOptions).pipe(map(this.extractData));
+    return this.http.get<any>(BASE_URL + "getAllUsers", this.httpOptions).pipe(map(this.extractData));
   }
   private extractData(res: Response) {
     let body = res;
     return body || { };
   }
 
-  userAPI(data): Observable<any> {
-    return this.http.post(this.baseurl, data, httpOptions)
-      .pipe(
-        tap((result) => console.log('result-->',result)),
-        catchError(this.handleError('error', []))
-      );
 }
